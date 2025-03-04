@@ -56,7 +56,7 @@
 
 1. **Clone repository**
    ```bash
-   git clone https://github.com/yourusername/ai-web-analyst.git
+   git clone https://github.com/newMeta98/ai-web-analyst.git
    cd ai-web-analyst
    ```
 2. **Set up environment**

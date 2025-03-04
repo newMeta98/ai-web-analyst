@@ -94,7 +94,7 @@ flask run --host=0.0.0.0 --port=5000
 ## 🧠 Key Concepts
 ### 🤖 AI Integration Architecture
 
-```mermaid
+```text
 
 graph LR
 A[User Input] --> B{Web Search/URL}

@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Live Processing Logs</h5>
+        </div>
+        <div class="card-body p-0">
+            <div id="log-container" style="height: 70vh; overflow-y: auto; background: #1e1e1e; color: #d4d4d4; padding: 20px; font-family: monospace; white-space: pre-wrap;">
+                {% for log in logs %}
+                <div class="log-entry">{{ log }}</div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const logContainer = document.getElementById('log-container');
+
+    // Function to add color coding based on log level
+    function colorizeLog(log) {
+        if (log.includes("WARNING")) {
+            return `<span style="color: #ffcc00;">${log}</span>`;
+        } else if (log.includes("ERROR")) {
+            return `<span style="color: #ff6666;">${log}</span>`;
+        } else if (log.includes("INFO")) {
+            return `<span style="color: #66ccff;">${log}</span>`;
+        }
+        return log;
+    }
+
+    // Function to fetch logs and update the container
+    function fetchLogs() {
+        fetch('/logs-content')
+            .then(response => response.text())
+            .then(logs => {
+                // Split logs into lines and add line breaks
+                const formattedLogs = logs.split('\n').map(log => colorizeLog(log)).join('<br>');
+                logContainer.innerHTML = formattedLogs;
+                logContainer.scrollTop = logContainer.scrollHeight; // Auto-scroll to the bottom
+            });
+    }
+
+    // Update logs every 2 seconds
+    setInterval(fetchLogs, 2000);
+    fetchLogs(); // Initial load
+</script>
+
+<style>
+    .log-entry {
+        margin-bottom: 10px; /* Add spacing between log entries */
+    }
+</style>
+{% endblock %}

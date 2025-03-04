@@ -1,0 +1,16 @@
+# Core Dependencies
+Flask
+python-dotenv
+
+# Web Scraping & Automation
+playwright
+beautifulsoup4
+requests
+duckduckgo-search
+
+# AI & Data Processing
+openai
+
+# Utilities
+urllib3
+lxml

@@ -102,7 +102,6 @@ def find_links(links, input_url):
         links_array = {
             "links": [
                 link for link in normalized_links
-                if link in processed_relative_links  # Ensure validity
             ][:4]
         }
 
